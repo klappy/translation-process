@@ -5,6 +5,7 @@ import {
   StepContent,
   Typography,
 } from '@material-ui/core';
+import ReactMarkdown from 'react-markdown';
 
 import {DataContext} from './Data.context';
 
@@ -26,9 +27,10 @@ function Stage({
     return (
       <div>
         <Typography variant='h6'>{sectionTitle}</Typography>
-        <Typography gutterBottom>
-          {section}
-        </Typography>
+        <ReactMarkdown
+          escapeHtml={false}
+          source={section}
+        />
       </div>
     );
   });

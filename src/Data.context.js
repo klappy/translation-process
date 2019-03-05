@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 
-import tsv from './data.tsv.js';
 
 export const DataContext = React.createContext();
 
@@ -8,8 +7,12 @@ export function DataContextProvider({children}) {
   const [data, setData] = useState([]);
   const [activeStage, setActiveStage] = useState(0);
 
-  const loadData = () => {
-    const _data = tsv.split('\n').map(row => row.split('\t'));
+  const loadData = async () => {
+    const response = await fetch('./data.tsv');
+    const tsv = await response.text();
+    const _data = tsv.split('\n')
+      .map(row => row.split('\t'))
+      .filter(row => row[0].length > 0 && row.length > 1);
     setData(_data);
   };
 
