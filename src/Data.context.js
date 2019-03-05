@@ -1,0 +1,58 @@
+import React, {useState} from 'react';
+
+import tsv from './data.tsv.js';
+
+export const DataContext = React.createContext();
+
+export function DataContextProvider({children}) {
+  const [data, setData] = useState([]);
+  const [activeStage, setActiveStage] = useState(0);
+
+  const loadData = () => {
+    const _data = tsv.split('\n').map(row => row.split('\t'));
+    setData(_data);
+  };
+
+  const getSectionTitle = ({sectionIndex}) => {
+    return data[0][sectionIndex];
+  };
+
+  const getStageLabel = ({stageIndex}) => {
+    return data[stageIndex][0];
+  };
+
+  const getStageContent = ({stageIndex}) => {
+    return data[stageIndex];
+  };
+
+  const stageNext = () => {
+    setActiveStage(prevActiveStage => prevActiveStage + 1);
+  };
+
+  const stageBack = () => {
+    setActiveStage(prevActiveStage => prevActiveStage - 1);
+  };
+
+  const stageReset = () => {
+    setActiveStage(0);
+  };
+
+  const value = {
+    data,
+    loadData,
+    getStageLabel,
+    getStageContent,
+    activeStage,
+    setActiveStage,
+    stageNext,
+    stageBack,
+    stageReset,
+    getSectionTitle,
+  };
+
+  return (
+    <DataContext.Provider value={value}>
+      {children}
+    </DataContext.Provider>
+  );
+};

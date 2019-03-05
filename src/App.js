@@ -1,28 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import ApplicationBar from './ApplicationBar';
+import Stages from './Stages'
+
+import {DataContextProvider} from './Data.context';
+
+function App() {
+
+  return (
+    <MuiThemeProvider theme={theme}>
+      <DataContextProvider>
+        <ApplicationBar />
+        <Stages />
+      </DataContextProvider>
+    </MuiThemeProvider>
+  );
+};
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#59B7E7',
+      main: '#31ADE3',
+      dark: '#014263',
+      contrastText: '#FFF'
+    },
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 export default App;
