@@ -10,7 +10,7 @@ import {
 const ApplicationBar = ({
   classes,
 }) => {
-  const title = 'Translation Process'
+  const title = 'Gateway Language Translation Process'
   return (
     <div className={classes.root}>
       <AppBar position="static">
