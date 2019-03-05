@@ -11,8 +11,11 @@ export function DataContextProvider({children}) {
     const response = await fetch('./data.tsv');
     const tsv = await response.text();
     const _data = tsv.split('\n')
-      .map(row => row.split('\t'))
-      .filter(row => row[0].length > 0 && row.length > 1);
+    .map(row =>
+      row.split('\t').map(cell =>
+        cell.replace(/<br>/gi, '\n')
+      )
+    ).filter(row => row[0].length > 0 && row.length > 1);
     setData(_data);
   };
 
