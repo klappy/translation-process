@@ -1,7 +1,7 @@
 {
   "name": "translation-process",
-  "homepage": "https://klappy.github.io/translation-process",
-  "version": "0.1.0",
+  "homepage": "https://unfoldingword-box3.github.io/translation-process",
+  "version": "0.1.1",
   "private": false,
   "dependencies": {
     "@material-ui/core": "^3.9.2",
