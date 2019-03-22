@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 
-
 export const DataContext = React.createContext();
 
 export function DataContextProvider({children}) {
@@ -8,7 +7,8 @@ export function DataContextProvider({children}) {
   const [activeStage, setActiveStage] = useState(0);
 
   const loadData = async () => {
-    const response = await fetch('./data.tsv');
+    const url = 'https://git.door43.org/klappy/translation_process/raw/branch/master/gl_translation_process.tsv'
+    const response = await fetch(url);
     const tsv = await response.text();
     const _data = tsv.split('\n')
     .map(row =>
